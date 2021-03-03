@@ -4,7 +4,7 @@
 
 char *Failuretype_str[Failuretype_TotalNumber] =
 {
-    "No Failure"
+    "No Failure",
     "Out of Lower Range ",
     "Out of Higher Range"
 };
@@ -16,4 +16,3 @@ void DisplayFailureOnConsole(char *Identifier, Failuretype_t Failuretype)
          Identifier,
          Failuretype_str[Failuretype]);
 }
-
