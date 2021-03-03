@@ -82,7 +82,7 @@ Every module contains a controldata struct which contains the following
 - Limits may change based on new research -- So thought of adding configurable parameters.
 
 ### My answers to some interesting questions
-The answers are only based on my experience so i am not sure if these are correct answers or not.
+The answers are only based on my experience so i am not sure if these are correct answers or not.i would call them my perspective but I want to know your answers too.
 - Can we add new functionality without disturbing the old? :
  We can try but no gaurantee. But one thing what we can do is to write a function closer to a pure function and then the amount of changes we get because of a feature addition or deletion
  may be less.
