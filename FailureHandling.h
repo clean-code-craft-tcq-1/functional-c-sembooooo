@@ -8,6 +8,6 @@ Failuretype_OutOfHigherRange,
 Failuretype_TotalNumber
 }Failuretype_t;
 
-extern void DisplayFailureOnConsole(char *Identifier, Failuretype_t Failuretype);
+extern void LogFailure(char *Identifier, Failuretype_t Failuretype);
 
 #endif  /*FAILUREHANDLING_H_*/

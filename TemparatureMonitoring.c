@@ -17,14 +17,14 @@ int IsBatteryTemparatureStable(float Temparature)
   if(IsValueOutofLowerRangeThreshold(Temparature,TemparatureControlData.LowerOutOfRangeThreshold) == TRUE)
   {
     TemparatureControlData.Failure = Failuretype_OutOfLowerRange;
-    DisplayFailureOnConsole(TemparatureControlData.Identifier,
+    LogFailure(TemparatureControlData.Identifier,
                            TemparatureControlData.Failure);
   }
   
   if(IsValueOutofHigherRangeThreshold(Temparature,TemparatureControlData.HigherOutOfRangeThreshold)== TRUE)
   {
     TemparatureControlData.Failure = Failuretype_OutOfHigherRange;
-    DisplayFailureOnConsole(TemparatureControlData.Identifier,
+    LogFailure(TemparatureControlData.Identifier,
                            TemparatureControlData.Failure);
   }
      return (TemparatureControlData.Failure == Failuretype_NoFailure);

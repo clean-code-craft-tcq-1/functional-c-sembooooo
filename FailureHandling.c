@@ -10,7 +10,7 @@ char *Failuretype_str[Failuretype_TotalNumber] =
 };
 
 
-void DisplayFailureOnConsole(char *Identifier, Failuretype_t Failuretype)
+void LogFailure(char *Identifier, Failuretype_t Failuretype)
 {
         printf("%s - %s\n",
          Identifier,

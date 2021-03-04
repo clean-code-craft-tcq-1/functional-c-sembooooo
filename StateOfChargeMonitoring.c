@@ -14,14 +14,14 @@ int IsBatteryStateOfChargeStable(float StateOfCharge)
   if(IsValueOutofLowerRangeThreshold(StateOfCharge,StateOfChargeControlData.LowerOutOfRangeThreshold))
   {
     StateOfChargeControlData.Failure = Failuretype_OutOfLowerRange;
-    DisplayFailureOnConsole(StateOfChargeControlData.Identifier,
+    LogFailure(StateOfChargeControlData.Identifier,
                            StateOfChargeControlData.Failure);
   }
   
   if(IsValueOutofHigherRangeThreshold(StateOfCharge,StateOfChargeControlData.HigherOutOfRangeThreshold))
   {
     StateOfChargeControlData.Failure = Failuretype_OutOfHigherRange;
-    DisplayFailureOnConsole(StateOfChargeControlData.Identifier,
+    LogFailure(StateOfChargeControlData.Identifier,
                            StateOfChargeControlData.Failure);
   }
      return (StateOfChargeControlData.Failure == Failuretype_NoFailure);

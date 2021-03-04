@@ -14,7 +14,7 @@ int IsBatterychargeRateStable(float chargeRate)
   if(IsValueOutofHigherRangeThreshold(chargeRate,ChargeRateControlData.HigherOutOfRangeThreshold))
   {
     ChargeRateControlData.Failure = Failuretype_OutOfHigherRange;
-    DisplayFailureOnConsole(ChargeRateControlData.Identifier,
+    LogFailure(ChargeRateControlData.Identifier,
                             ChargeRateControlData.Failure);
   }
   return (ChargeRateControlData.Failure == Failuretype_NoFailure);
