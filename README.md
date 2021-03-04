@@ -63,9 +63,12 @@ less time hence brief readme
 modularized code into the following units
 1. BatteryHealthMonitoring - successor of checker.c
 2. ChargeRateMonitoring 
-3. FailureHandling  - contains Failure logging on console. 
-4. StateOfChargeMonitoring
-5. TemparatureMonitoring
+3. FailureHandling  - contains Failure logging. For now its console. As mentioned in the 
+                comments if its text to speech then we need not use a different function.
+                changing one function should do it.
+4. LimitedRangeParameterMonitoring - For temparature and state of charge as their values
+                                    can only be with in a range.
+                                    
 6. MathUtil
 7. Config/ParameterConfig - To configure limits. There is a chance to play with limits. 
                             can only be tested with UT as preprocessor cannot handle floats.
@@ -77,23 +80,12 @@ Every module contains a controldata struct which contains the following
 2. thresholds (higher and lower)
 3. Failure type
 
+
 ### Things done:
+- Added function pointers to simply IsBatteryOk function. 
 - Added case specific failure logging.
 - Limits may change based on new research -- So thought of adding configurable parameters.
 
-### My answers to some interesting questions
-The answers are only based on my experience so i am not sure if these are correct answers or not.i would call them my perspective but I want to know your answers too.
-- Can we add new functionality without disturbing the old? :
- We can try but no gaurantee. But one thing what we can do is to write a function closer to a pure function and then the amount of changes we get because of a feature addition or deletion
- may be less.
-
-- Predicting the future requires Astrology! : I sometimes feel the same lol.
-    There can be times where some part of legacy code needs to be reworked because of one weird feature which we would never thought about. - rare case
-    But if the component is new, the design or the architecture of the component can be made flexibile enough so it can be extended to new features rather than modifying it.
-    In this case too we can give a try but thinking extensivly then gain it requires astrology.
-    <It sounds like a good idea to document birth time, birth place and other details of a feature >
-
-    
 
 
 

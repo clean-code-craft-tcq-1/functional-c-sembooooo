@@ -15,13 +15,13 @@ typedef struct {
 } parameter_t;
 
 typedef enum{
-    BatteryHealthStatus_OK,
     BatteryHealthStatus_NotOK,
+    BatteryHealthStatus_OK
 }BatteryHealthStatus_t;
 
 typedef struct {
-    parameter_t patameter[BatteryParameter_TotalNumber],
-   BatteryHealthStatus_t HealthStatus;
+    parameter_t parameter[BatteryParameter_TotalNumber];
+    BatteryHealthStatus_t HealthStatus;
 } BatteryHealthControlData_t;
 
 
