@@ -11,7 +11,7 @@
 
 float param_value[][3] = {
   {25.0, 0.7, 70.0},  /* Good parameters */
-  {50.0, 0.0,85.0},    /* Bad Parameters */
+  {50.0, 0.0, 85.0},    /* Bad Parameters */
   {(BMS_TEMPARATURE_HIGHER_WARNING_RANGE+0.5) ,
    (BMS_CHARGERATE_HIGHER_WARNING_RANGE+0.01),
    (BMS_STATEOFCHARGE_HIGHER_WARNING_RANGE+0.5)}  /*Warning Parameters */
@@ -50,6 +50,7 @@ void FeedBatteryParameterValues(float *Param_Value)
 int batteryIsOk() 
 {
   int loop_index;
+  BatteryHealthControlData.HealthStatus = BatteryHealthStatus_OK;
   for(loop_index = 0; loop_index < ((int)BatteryParameter_TotalNumber) ; loop_index++)
   {
     BatteryHealthControlData.HealthStatus = (BatteryHealthControlData.parameter[loop_index].Monitoring(
@@ -65,9 +66,10 @@ int main() {
   /**For some reason if i write line no 68 and 69 after 70
    * assertion is getting failed but now here. 
    * The issue is still present need to find out the reason*/
-  FeedBatteryParameterValues(param_value[2]);
-  assert(batteryIsOk());
+
   FeedBatteryParameterValues(param_value[1]);
   assert(!batteryIsOk());
+  FeedBatteryParameterValues(param_value[2]);
+  assert(batteryIsOk());
   return 0;
 }
