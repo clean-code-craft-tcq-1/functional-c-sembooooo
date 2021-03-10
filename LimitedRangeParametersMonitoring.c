@@ -37,12 +37,12 @@ void IsParameterWithinWarningRange(char *Identifier, ParameterThresholds_t *Para
 
 TemparatureControlData_t TemparatureControlData = {
   {
-    BMS_TEMPARATURE_LOWER_WARNING_RANGE,            
-    BMS_TEMPARATURE_HIGHER_WARNING_RANGE
-  },
-  {
     BMS_TEMPARATURE_LOWER_RANGE,
     BMS_TEMPARATURE_HIGHER_RANGE
+  },
+  {
+    BMS_TEMPARATURE_LOWER_WARNING_RANGE,            
+    BMS_TEMPARATURE_HIGHER_WARNING_RANGE
   },
 #if(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH)          
   "Temparature" 
@@ -52,13 +52,13 @@ TemparatureControlData_t TemparatureControlData = {
   };
 
 StateOfControlData_t StateOfChargeControlData ={
+    {
+    BMS_STATEOFCHARGE_LOWER_RANGE,
+    BMS_STATEOFCHARGE_HIGHER_RANGE
+  },
   {
     BMS_STATEOFCHARGE_LOWER_WARNING_RANGE,             
     BMS_STATEOFCHARGE_HIGHER_WARNING_RANGE
-  },
-    {
-    BMS_TEMPARATURE_LOWER_RANGE,
-    BMS_TEMPARATURE_HIGHER_RANGE
   },
 #if(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH) 
   "StateOfCharge" 
@@ -73,6 +73,10 @@ int IsBatteryTemparatureStable(float Temparature)
     IsTemparatureStable = IsParameterStable(TemparatureControlData.Identifier,
                                             &TemparatureControlData.ErrorThreshold,
                                             Temparature);
+    if(IsTemparatureStable == 0)
+    {
+      return IsTemparatureStable;
+    }                                        
     IsParameterWithinWarningRange(TemparatureControlData.Identifier,
                                             &TemparatureControlData.WarningThreshold,
                                             Temparature);
@@ -81,10 +85,14 @@ int IsBatteryTemparatureStable(float Temparature)
 
 int IsBatteryStateOfChargeStable(float StateOfCharge)
 {
-    int IsSOCStable;
+    int IsSOCStable ;
     IsSOCStable = IsParameterStable(StateOfChargeControlData.Identifier,
                                             &StateOfChargeControlData.ErrorThreshold,
                                             StateOfCharge);
+    if(IsSOCStable == 0)
+    {
+      return IsSOCStable;
+    }                                        
     IsParameterWithinWarningRange(StateOfChargeControlData.Identifier,
                                             &StateOfChargeControlData.WarningThreshold,
                                             StateOfCharge);
