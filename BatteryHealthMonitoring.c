@@ -63,10 +63,6 @@ int batteryIsOk()
 int main() {
   FeedBatteryParameterValues(param_value[0]);
   assert(batteryIsOk());
-  /**For some reason if i write line no 68 and 69 after 70
-   * assertion is getting failed but now here. 
-   * The issue is still present need to find out the reason*/
-
   FeedBatteryParameterValues(param_value[1]);
   assert(!batteryIsOk());
   FeedBatteryParameterValues(param_value[2]);
