@@ -1,11 +1,11 @@
 #ifndef CHARGERATEMONITORING_H_
 #define CHARGERATEMONITORING_H_
 
-#include "FailureHandling.h"
+#include "Alert.h"
 
 typedef struct {
   float HigherOutOfRangeThreshold;
-  Failuretype_t Failure;
+  float HigherOutOfRangeWarningThreshold;
   char *Identifier;
 }ChargeRateControlData_t;
 

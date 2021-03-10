@@ -1,14 +1,25 @@
 #ifndef LIMITEDRANGEPARAMETERSMONITORING_H_
 #define LIMITEDRANGEPARAMETERSMONITORING_H_
 
-#include "FailureHandling.h"
+#include "Alert.h"
+
 
 typedef struct {
   float LowerOutOfRangeThreshold;
   float HigherOutOfRangeThreshold;
-  Failuretype_t Failure;
+}ParameterThresholds_t;
+
+typedef struct {
+  ParameterThresholds_t ErrorThreshold;
+  ParameterThresholds_t WarningThreshold;
   char *Identifier;
-}LimitedRangeParameterControlData_t;
+}TemparatureControlData_t;
+
+typedef struct {
+  ParameterThresholds_t ErrorThreshold;
+  ParameterThresholds_t WarningThreshold;
+  char *Identifier;
+}StateOfControlData_t;
 
 extern int IsBatteryTemparatureStable(float Temparature);
 

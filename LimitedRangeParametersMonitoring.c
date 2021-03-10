@@ -5,44 +5,89 @@
 #define TRUE 1
 #define FALSE 0
 
-int IsParameterStable(LimitedRangeParameterControlData_t *Parameter, float Value)
+int IsParameterStable(char *Identifier, ParameterThresholds_t *Parameter, float Value)
 {
+  int IsParameterStable = 1;
   if(IsValueOutofLowerRangeThreshold(Value,Parameter->LowerOutOfRangeThreshold) == TRUE)
   {
-    Parameter->Failure = Failuretype_OutOfLowerRange;
-    LogFailure(Parameter->Identifier,
-                           Parameter->Failure);
+    IsParameterStable = 0;
+    Alert(Identifier,AlertType_OutOfLowerRange);
   }
   
   if(IsValueOutofHigherRangeThreshold(Value,Parameter->HigherOutOfRangeThreshold)== TRUE)
   {
-    Parameter->Failure = Failuretype_OutOfHigherRange;
-    LogFailure(Parameter->Identifier,
-                           Parameter->Failure);
+    Alert(Identifier,AlertType_OutOfHigherRange);
+    IsParameterStable = 0;
   }
-     return (Parameter->Failure == Failuretype_NoFailure);
+     return IsParameterStable;
 }
 
-LimitedRangeParameterControlData_t TemparatureControlData = {
-  BMS_TEMPARATURE_LOWER_RANGE,            
-  BMS_TEMPARATURE_HIGHER_RANGE,
-  Failuretype_NoFailure,           
+void IsParameterWithinWarningRange(char *Identifier, ParameterThresholds_t *Parameter, float Value)
+{
+  if(IsValueOutofLowerRangeThreshold(Value,Parameter->LowerOutOfRangeThreshold) == TRUE)
+  {
+    Alert(Identifier,AlertType_CloseToLowerRange);
+  }
+  
+  if(IsValueOutofHigherRangeThreshold(Value,Parameter->HigherOutOfRangeThreshold)== TRUE)
+  {
+    Alert(Identifier,AlertType_CloseToHigherRange);
+  }
+}
+
+TemparatureControlData_t TemparatureControlData = {
+  {
+    BMS_TEMPARATURE_LOWER_WARNING_RANGE,            
+    BMS_TEMPARATURE_HIGHER_WARNING_RANGE
+  },
+  {
+    BMS_TEMPARATURE_LOWER_RANGE,
+    BMS_TEMPARATURE_HIGHER_RANGE
+  },
+#if(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH)          
   "Temparature" 
+#else
+  "Temperatur"
+#endif  /*(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH)*/
   };
 
-LimitedRangeParameterControlData_t StateOfChargeControlData ={
-  BMS_STATEOFCHARGE_LOWER_RANGE,             
-  BMS_STATEOFCHARGE_HIGHER_RANGE,
-  Failuretype_NoFailure,
+StateOfControlData_t StateOfChargeControlData ={
+  {
+    BMS_STATEOFCHARGE_LOWER_WARNING_RANGE,             
+    BMS_STATEOFCHARGE_HIGHER_WARNING_RANGE
+  },
+    {
+    BMS_TEMPARATURE_LOWER_RANGE,
+    BMS_TEMPARATURE_HIGHER_RANGE
+  },
+#if(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH) 
   "StateOfCharge" 
+#else
+  "Ladezustand"
+#endif /*(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH) */
   };
 
 int IsBatteryTemparatureStable(float Temparature)
 {
-  IsParameterStable(&TemparatureControlData,Temparature);
-}
+  int IsTemparatureStable;
+    IsTemparatureStable = IsParameterStable(TemparatureControlData.Identifier,
+                                            &TemparatureControlData.ErrorThreshold,
+                                            Temparature);
+    IsParameterWithinWarningRange(TemparatureControlData.Identifier,
+                                            &TemparatureControlData.WarningThreshold,
+                                            Temparature);
+  return IsTemparatureStable;
+}   
 
 int IsBatteryStateOfChargeStable(float StateOfCharge)
 {
-  IsParameterStable(&StateOfChargeControlData,StateOfCharge);
+    int IsSOCStable;
+    IsSOCStable = IsParameterStable(StateOfChargeControlData.Identifier,
+                                            &StateOfChargeControlData.ErrorThreshold,
+                                            StateOfCharge);
+    IsParameterWithinWarningRange(StateOfChargeControlData.Identifier,
+                                            &StateOfChargeControlData.WarningThreshold,
+                                            StateOfCharge);
+  return IsSOCStable;
+
 }
