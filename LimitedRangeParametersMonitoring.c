@@ -11,12 +11,12 @@ int IsParameterStable(char *Identifier, ParameterThresholds_t *Parameter, float 
   if(IsValueOutofLowerRangeThreshold(Value,Parameter->LowerOutOfRangeThreshold) == TRUE)
   {
     IsParameterStable = 0;
-    Alert(Identifier,AlertType_OutOfLowerRange);
+    FeedAlertContainer(Identifier,AlertType_OutOfLowerRange);
   }
   
   if(IsValueOutofHigherRangeThreshold(Value,Parameter->HigherOutOfRangeThreshold)== TRUE)
   {
-    Alert(Identifier,AlertType_OutOfHigherRange);
+    FeedAlertContainer(Identifier,AlertType_OutOfHigherRange);
     IsParameterStable = 0;
   }
      return IsParameterStable;
@@ -26,12 +26,12 @@ void IsParameterWithinWarningRange(char *Identifier, ParameterThresholds_t *Para
 {
   if(IsValueOutofLowerRangeThreshold(Value,Parameter->LowerOutOfRangeThreshold) == TRUE)
   {
-    Alert(Identifier,AlertType_CloseToLowerRange);
+    FeedAlertContainer(Identifier,AlertType_CloseToLowerRange);
   }
   
   if(IsValueOutofHigherRangeThreshold(Value,Parameter->HigherOutOfRangeThreshold)== TRUE)
   {
-    Alert(Identifier,AlertType_CloseToHigherRange);
+    FeedAlertContainer(Identifier,AlertType_CloseToHigherRange);
   }
 }
 

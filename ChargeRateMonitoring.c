@@ -19,13 +19,13 @@ int IsBatterychargeRateStable(float chargeRate)
   if(IsValueOutofHigherRangeThreshold(chargeRate,ChargeRateControlData.HigherOutOfRangeThreshold))
   {
     IsChargeRateStable = 0;
-    Alert(ChargeRateControlData.Identifier,
+    FeedAlertContainer(ChargeRateControlData.Identifier,
                             AlertType_OutOfHigherRange);
     return IsChargeRateStable;
   }
   if(IsValueOutofHigherRangeThreshold(chargeRate,ChargeRateControlData.HigherOutOfRangeWarningThreshold))
   {
-    Alert(ChargeRateControlData.Identifier,
+    FeedAlertContainer(ChargeRateControlData.Identifier,
                             AlertType_CloseToHigherRange);
   }
   return IsChargeRateStable;

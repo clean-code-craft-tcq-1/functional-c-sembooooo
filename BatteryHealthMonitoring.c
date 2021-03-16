@@ -4,6 +4,7 @@
 #include "LimitedRangeParametersMonitoring.h"
 #include "ChargeRateMonitoring.h"
 #include "Config/ParameterConfig.h"
+#include "Alert.h"
 
 #define TRUE 1
 #define FALSE 0
@@ -51,12 +52,14 @@ int batteryIsOk()
 {
   int loop_index;
   BatteryHealthControlData.HealthStatus = BatteryHealthStatus_OK;
+  
   for(loop_index = 0; loop_index < ((int)BatteryParameter_TotalNumber) ; loop_index++)
   {
     BatteryHealthControlData.HealthStatus = (BatteryHealthControlData.parameter[loop_index].Monitoring(
                                               BatteryHealthControlData.parameter[loop_index].Value) &&
                                               BatteryHealthControlData.HealthStatus);
   }
+  AlertFromContainerData();
   return  BatteryHealthControlData.HealthStatus;
 }
 
