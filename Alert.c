@@ -20,11 +20,7 @@ char *AlertType_str[AlertType_TotalNumber] =
 #endif  /*(BMS_ALERT_LANGUAGE == BMS_ALERT_LANGUAGE_ENGLISH)*/
 
 
-/**
- * This can be done with dynamic memory allocation but
- * as it is a simple one with three parameters i went
- * static memory allocation.
- */ 
+
 char *AlertContainer[AlertType_TotalNumber][NUMBER_OF_BATTERYMON_PARAMETERS];
 int AlertContainerIndex[AlertType_TotalNumber];
 
@@ -35,45 +31,27 @@ void FeedAlertContainer(char *Identifier,AlertType_t AlertType)
     AlertContainerIndex[AlertType]++;
 }
 
+void AlertFromContainerDataForType(AlertType_t AlertType)
+{
+    int index;
+    for(index = 0;index<AlertContainerIndex[AlertType];index++)
+    {
+        printf("%s-",AlertContainer[AlertType][index]);
+    }
+    if(AlertContainerIndex[AlertType] != 0)
+    {
+        printf("%s \n",AlertType_str[AlertType]);
+        AlertContainerIndex[AlertType] = 0;
+    }
+}
 
 void AlertFromContainerData(void)
 {
-    int index ,AlertType;
-
-    /*Coding for Tool
-    Label_LoopStart:
-    if(AlertContainerIndex[AlertType] != 0)
-    {
-        for(index = 0;index<AlertContainerIndex[AlertType];index++)
-        {
-            printf("%s-",AlertContainer[AlertType][index]);
-        }
-     
-        printf("%s \n",AlertType_str[AlertType]);
-        AlertContainerIndex[AlertType] = 0;        
-    }
-    if(AlertType < AlertType_TotalNumber)
-    {
-        AlertType++;
-        goto Label_LoopStart;
-    }
-    */
-   if(1)
-   {
-    for(AlertType = 0; AlertType < AlertType_TotalNumber; AlertType++)
-    {
-        for(index = 0;index<AlertContainerIndex[AlertType];index++)
-        {
-            printf("%s-",AlertContainer[AlertType][index]);
-        }
-        if(AlertContainerIndex[AlertType] != 0)
-        {
-            printf("%s \n",AlertType_str[AlertType]);
-            AlertContainerIndex[AlertType] = 0;
-        }
-    }
-   }
-    
+    /*Coding for Tool */
+    AlertFromContainerDataForType(AlertType_CloseToLowerRange);
+    AlertFromContainerDataForType(AlertType_OutOfLowerRange);
+    AlertFromContainerDataForType(AlertType_CloseToHigherRange);
+    AlertFromContainerDataForType(AlertType_OutOfHigherRange); 
 }
 
 void Alert(char *Identifier, AlertType_t AlertType)
