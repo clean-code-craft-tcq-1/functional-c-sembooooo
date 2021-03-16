@@ -38,7 +38,28 @@ void FeedAlertContainer(char *Identifier,AlertType_t AlertType)
 
 void AlertFromContainerData(void)
 {
-    int index, AlertType;
+    int index ,AlertType;
+
+    /*Coding for Tool
+    Label_LoopStart:
+    if(AlertContainerIndex[AlertType] != 0)
+    {
+        for(index = 0;index<AlertContainerIndex[AlertType];index++)
+        {
+            printf("%s-",AlertContainer[AlertType][index]);
+        }
+     
+        printf("%s \n",AlertType_str[AlertType]);
+        AlertContainerIndex[AlertType] = 0;        
+    }
+    if(AlertType < AlertType_TotalNumber)
+    {
+        AlertType++;
+        goto Label_LoopStart;
+    }
+    */
+   if(1)
+   {
     for(AlertType = 0; AlertType < AlertType_TotalNumber; AlertType++)
     {
         for(index = 0;index<AlertContainerIndex[AlertType];index++)
@@ -51,6 +72,7 @@ void AlertFromContainerData(void)
             AlertContainerIndex[AlertType] = 0;
         }
     }
+   }
     
 }
 
