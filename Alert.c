@@ -5,6 +5,7 @@
 char *AlertType_str[AlertType_TotalNumber] =
 #if(BMS_ALERT_LANGUAGE == BMS_ALERT_LANGUAGE_ENGLISH)
 {
+    NULL,
     "Warning: Close to Lower Threshold",
     "ERROR: Lower Threshold Crossed",
     "Warning: Close to Higher Threshold",
@@ -12,51 +13,52 @@ char *AlertType_str[AlertType_TotalNumber] =
 };
 #else
 {
-    "Warnung: Nahe am unteren Schwellenwert"
-    "FEHLER: Unterer Schwellenwert überschritten ",
-    "Warnung: Nahe an der höheren Schwelle"
+    NULL,
+    "Warnung: Nahe am unteren Schwellenwert",
+    "FEHLER: Unterer Schwellenwert überschritten",
+    "Warnung: Nahe an der höheren Schwelle",
     "FEHLER: Höherer Schwellenwert überschritten"
+};
+#endif  /*(BMS_ALERT_LANGUAGE == BMS_ALERT_LANGUAGE_ENGLISH)*/
+
+char *Parameter_str[BatteryParameter_TotalNumber] = 
+#if(BMS_ALERT_LANGUAGE == BMS_ALERT_LANGUAGE_ENGLISH)
+{
+    "Temparature",
+    "ChargeRate",
+    "StateOfCharge"
+    
+};
+#else
+{
+    "Temperatur",
+    "Ladestrom",
+    "Ladezustand"
 };
 #endif  /*(BMS_ALERT_LANGUAGE == BMS_ALERT_LANGUAGE_ENGLISH)*/
 
 
 
-char *AlertContainer[AlertType_TotalNumber][NUMBER_OF_BATTERYMON_PARAMETERS];
-int AlertContainerIndex[AlertType_TotalNumber];
+AlertType_t ParameterAlertContainer[BatteryParameter_TotalNumber] = {
+    AlertType_NoAlert,
+    AlertType_NoAlert,
+    AlertType_NoAlert
+};
 
-void FeedAlertContainer(char *Identifier,AlertType_t AlertType)
+void ReportToAlertContainer(BatteryParameter_t BatteryParameter,AlertType_t AlertType)
 {
-    int index = AlertContainerIndex[AlertType];
-    AlertContainer[AlertType][index] = Identifier;
-    AlertContainerIndex[AlertType]++;
+    ParameterAlertContainer[BatteryParameter] = AlertType;
 }
 
-void AlertFromContainerDataForType(AlertType_t AlertType)
-{
-    int index;
-    for(index = 0;index<AlertContainerIndex[AlertType];index++)
-    {
-        printf("%s-",AlertContainer[AlertType][index]);
-    }
-    if(AlertContainerIndex[AlertType] != 0)
-    {
-        printf("%s \n",AlertType_str[AlertType]);
-        AlertContainerIndex[AlertType] = 0;
-    }
-}
 
-void AlertFromContainerData(void)
+void Alert(void)
 {
-    /*Coding for Tool */
-    AlertFromContainerDataForType(AlertType_CloseToLowerRange);
-    AlertFromContainerDataForType(AlertType_OutOfLowerRange);
-    AlertFromContainerDataForType(AlertType_CloseToHigherRange);
-    AlertFromContainerDataForType(AlertType_OutOfHigherRange); 
-}
-
-void Alert(char *Identifier, AlertType_t AlertType)
-{    
+    int index = 0;
+    for(index = 0;index < BatteryParameter_TotalNumber;index++)
+        if(ParameterAlertContainer[index] != AlertType_NoAlert)
         printf("%s %s\n",
-         Identifier,
-         AlertType_str[AlertType]);
+            Parameter_str[index],
+            AlertType_str[ParameterAlertContainer[index]]);
 }
+
+

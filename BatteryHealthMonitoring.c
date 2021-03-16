@@ -59,16 +59,18 @@ int batteryIsOk()
                                               BatteryHealthControlData.parameter[loop_index].Value) &&
                                               BatteryHealthControlData.HealthStatus);
   }
-  AlertFromContainerData();
   return  BatteryHealthControlData.HealthStatus;
 }
 
 int main() {
   FeedBatteryParameterValues(param_value[0]);
   assert(batteryIsOk());
+  Alert();
   FeedBatteryParameterValues(param_value[1]);
   assert(!batteryIsOk());
+  Alert();
   FeedBatteryParameterValues(param_value[2]);
   assert(batteryIsOk());
+  Alert();
   return 0;
 }

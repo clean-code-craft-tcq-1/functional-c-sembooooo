@@ -6,7 +6,7 @@
 typedef struct {
   float HigherOutOfRangeThreshold;
   float HigherOutOfRangeWarningThreshold;
-  char *Identifier;
+  BatteryParameter_t  BatteryParameter;
 }ChargeRateControlData_t;
 
 extern int IsBatterychargeRateStable(float chargeRate);

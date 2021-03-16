@@ -2,6 +2,7 @@
 #define LIMITEDRANGEPARAMETERSMONITORING_H_
 
 #include "Alert.h"
+#include "BatteryHealthMonitoring.h"
 
 
 typedef struct {
@@ -12,13 +13,13 @@ typedef struct {
 typedef struct {
   ParameterThresholds_t ErrorThreshold;
   ParameterThresholds_t WarningThreshold;
-  char *Identifier;
+  BatteryParameter_t BatteryParameter;
 }TemparatureControlData_t;
 
 typedef struct {
   ParameterThresholds_t ErrorThreshold;
   ParameterThresholds_t WarningThreshold;
-  char *Identifier;
+  BatteryParameter_t BatteryParameter;
 }StateOfControlData_t;
 
 extern int IsBatteryTemparatureStable(float Temparature);

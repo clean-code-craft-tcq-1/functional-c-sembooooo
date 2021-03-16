@@ -6,11 +6,7 @@
 ChargeRateControlData_t ChargeRateControlData = {
     BMS_CHARGERATE_HIGHER_RANGE,
     BMS_CHARGERATE_HIGHER_WARNING_RANGE,
-#if(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH)
-    "ChargeRate"
-#else
-    "Ladestrom"
-#endif  /*(BMS_LANGUAGE_IN_FAILURELOG == BMS_LANGUAGE_IN_FAILURELOG_ENGLISH)*/
+    BatteryParameter_ChargeRate
      };
 
 int IsBatterychargeRateStable(float chargeRate)
@@ -19,13 +15,13 @@ int IsBatterychargeRateStable(float chargeRate)
   if(IsValueOutofHigherRangeThreshold(chargeRate,ChargeRateControlData.HigherOutOfRangeThreshold))
   {
     IsChargeRateStable = 0;
-    FeedAlertContainer(ChargeRateControlData.Identifier,
+    ReportToAlertContainer(ChargeRateControlData.BatteryParameter,
                             AlertType_OutOfHigherRange);
     return IsChargeRateStable;
   }
   if(IsValueOutofHigherRangeThreshold(chargeRate,ChargeRateControlData.HigherOutOfRangeWarningThreshold))
   {
-    FeedAlertContainer(ChargeRateControlData.Identifier,
+    ReportToAlertContainer(ChargeRateControlData.BatteryParameter,
                             AlertType_CloseToHigherRange);
   }
   return IsChargeRateStable;
