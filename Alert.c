@@ -5,7 +5,6 @@
 char *AlertType_str[AlertType_TotalNumber] =
 #if(BMS_ALERT_LANGUAGE == BMS_ALERT_LANGUAGE_ENGLISH)
 {
-    "No Failure",
     "Warning: Close to Lower Threshold",
     "ERROR: Lower Threshold Crossed",
     "Warning: Close to Higher Threshold",
@@ -13,7 +12,6 @@ char *AlertType_str[AlertType_TotalNumber] =
 };
 #else
 {
-    "Kein Fehler",
     "Warnung: Nahe am unteren Schwellenwert"
     "FEHLER: Unterer Schwellenwert überschritten ",
     "Warnung: Nahe an der höheren Schwelle"

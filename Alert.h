@@ -2,7 +2,6 @@
 #define FAILUREHANDLING_H_
 
 typedef enum{
-AlertType_NoAlert =0,
 AlertType_CloseToLowerRange,
 AlertType_OutOfLowerRange,
 AlertType_CloseToHigherRange,
