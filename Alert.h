@@ -13,7 +13,7 @@ AlertType_TotalNumber
 }AlertType_t;
 
 
-extern void Alert(void);
+extern void AlertFromContainerData(void);
 extern void ReportToAlertContainer(BatteryParameter_t BatteryParameter,AlertType_t AlertType);
 
 

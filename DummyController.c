@@ -20,12 +20,13 @@ float parameterValues[2][BatteryParameter_TotalNumber] = {
 int main()
 {
     FeedBatteryParameterValues(parameterValues[0]);
-    if(IsbatteryOk())
+    if(!IsbatteryOk())
     {
         FeedBatteryParameterValues(parameterValues[1]);
     }
     AlertFromContainerData();
     assert(IsbatteryOk());
     AlertFromContainerData();
+    return 0;
 }
 
