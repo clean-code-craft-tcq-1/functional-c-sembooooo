@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: gcc -Wall -Wextra -o BatteryHealthMonitoringTester ./Test/BatteryHealthMonitoring/*.c
+      run: gcc -Wall -Wextra -o AlertTester ./Test/Alert/*.c
       
     - name: run
-      run: ./BatteryHealthMonitoringTester
+      run: ./AlertTester

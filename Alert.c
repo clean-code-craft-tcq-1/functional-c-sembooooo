@@ -1,6 +1,8 @@
 #include "Alert.h"
 #include "Config/ParameterConfig.h"
 #include <stdio.h>
+#include <assert.h>
+#include "Console.h"
 
 char *AlertType_str[AlertType_TotalNumber] =
 #if(BMS_ALERT_LANGUAGE == BMS_ALERT_LANGUAGE_ENGLISH)
@@ -46,13 +48,12 @@ AlertType_t ParameterAlertContainer[BatteryParameter_TotalNumber] = {
 
 void ReportToAlertContainer(BatteryParameter_t BatteryParameter,AlertType_t AlertType)
 {
+    assert(BatteryParameter <= (BatteryParameter_TotalNumber-1));
+    assert(AlertType <= (AlertType_TotalNumber-1));
     ParameterAlertContainer[BatteryParameter] = AlertType;
 }
 
-void printonConsole(char* str1, char* str2)
-{
-    printf("%s  %s\n",str1,str2);
-}
+
 
 void AlertFromContainerData(void)
 {

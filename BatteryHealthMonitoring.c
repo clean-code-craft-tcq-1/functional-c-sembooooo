@@ -37,7 +37,7 @@ void FeedBatteryParameterValues(float *Param_Value)
 }
 
 
-int batteryIsOk() 
+int IsbatteryOk(void) 
 {
   int loop_index;
   BatteryHealthControlData.HealthStatus = BatteryHealthStatus_OK;

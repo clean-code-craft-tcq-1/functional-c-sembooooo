@@ -24,5 +24,6 @@ typedef struct {
     BatteryHealthStatus_t HealthStatus;
 } BatteryHealthControlData_t;
 
-
+extern int IsbatteryOk(void);
+extern void FeedBatteryParameterValues(float *Param_Value);
 #endif  /*BATTERYHEALTHMONITORING_H_*/
