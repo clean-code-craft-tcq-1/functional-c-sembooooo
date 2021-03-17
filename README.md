@@ -80,14 +80,12 @@ Every module contains a controldata struct which contains the following
 2. thresholds (higher and lower)
 3. Failure type
 
+### Why new this time ?
+I tried to create a test environment and execution environment.
+Original work flow is not at all changed.
+Just added one more work flow.
 
-### Things done:
-- Added function pointers to simply IsBatteryOk function. 
-- Added case specific failure logging.
-- Limits may change based on new research -- So thought of adding configurable parameters.
 
-### Refactoring Assignment
-    Picked 1 and 2
 
 
 
