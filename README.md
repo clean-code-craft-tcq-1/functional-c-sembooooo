@@ -80,10 +80,17 @@ Every module contains a controldata struct which contains the following
 2. thresholds (higher and lower)
 3. Failure type
 
-### Why new this time ?
+### What new this time ?
 I tried to create a test environment and execution environment.
-Original work flow is not at all changed.
-Just added one more work flow.
+In the test environment only testing of a unit happens.
+For this line in the assignment- "Test the accumulator and reporter separately." - i have created 
+another unit console which capsulates printf.
+During my test i have a stub function to the function which capsulates printf to test.
+In the execution environment the src code with dummy controller runs.
+Workflows were only added but not modified.
+
+
+
 
 
 
