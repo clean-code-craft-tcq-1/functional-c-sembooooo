@@ -12,7 +12,7 @@ void printonConsole(char* str1, char* str2)
     call_PrintOnConsole++;
     PrintOnConsoleInputParam[PrintOnConsoleInputParamIndex].str[0] = str1;
     PrintOnConsoleInputParam[PrintOnConsoleInputParamIndex].str[1] = str2;
-    PrintOnConsoleInputParamIndex = 0;
+    PrintOnConsoleInputParamIndex++;
 }
 
 
