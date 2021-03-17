@@ -2,13 +2,21 @@
 
 #include "BatteryHealthMonitoring.h"
 #include "Alert.h"
-#if 0
-float parameterValue[BatteryParameter_TotalNumber];
+float parameterValues[2][BatteryParameter_TotalNumber] = {
+    {50.0, 0.9, 85.0},
+    {25.0, 0.7, 55.0}
+};
 
-void DummyController(void)
+/*Dummy Controller */
+int main()
 {
-
-
+    FeedBatteryParameterValues(parameterValues[0]);
+    if(BatteryIsOk())
+    {
+        FeedBatteryParameterValues(parameterValues[1]);
+    }
+    AlertFromContainerData();
+    BatteryIsOk();
+    AlertFromContainerData();
 }
 
-#endif

@@ -64,12 +64,3 @@ void AlertFromContainerData(void)
            ParameterAlertContainer[index] = AlertType_NoAlert;
         }
 }
-
-
-void ccn_check(void)
-{
-    while(1)
-    {
-        printf("adf");
-    }
-}
