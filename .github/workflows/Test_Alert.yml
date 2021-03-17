@@ -1,0 +1,16 @@
+name: Test_Alert
+
+on: [pull_request]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: build
+      run: gcc -Wall -Wextra -o AlertTester ./Test/Alert/*.c
+      
+    - name: run
+      run: ./AlertTester

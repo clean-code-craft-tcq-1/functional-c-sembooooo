@@ -57,3 +57,51 @@ Shorten the Semantic distance
 - Functional to express relation between input and output
 - Object oriented to encapsulate state with actions
 - Apect oriented to capture repeating aspects
+
+## Assignment solution details
+less time hence brief readme 
+modularized code into the following units
+1. BatteryHealthMonitoring - successor of checker.c
+2. ChargeRateMonitoring 
+3. FailureHandling  - contains Failure logging. For now its console. As mentioned in the 
+                comments if its text to speech then we need not use a different function.
+                changing one function should do it.
+4. LimitedRangeParameterMonitoring - For temparature and state of charge as their values
+                                    can only be with in a range.
+                                    
+6. MathUtil
+7. Config/ParameterConfig - To configure limits. There is a chance to play with limits. 
+                            can only be tested with UT as preprocessor cannot handle floats.
+                            or else #if and #error would have been sufficient.
+
+Every module contains a controldata struct which contains the following
+<Took the name from my regular practice but there can be a better name for this>
+1. Identifier in string which is name of the parameter under monitoring
+2. thresholds (higher and lower)
+3. Failure type
+
+### What new this time ?
+I tried to create a test environment and execution environment.
+In the test environment only testing of a unit happens.
+For this line in the assignment- "Test the accumulator and reporter separately." - i have created 
+another unit console which capsulates printf.
+During my test i have a stub function to the function which capsulates printf to test.
+In the execution environment the src code with dummy controller runs.
+Workflows were only added but not modified.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
