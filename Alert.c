@@ -26,8 +26,7 @@ char *Parameter_str[BatteryParameter_TotalNumber] =
 {
     "Temparature",
     "ChargeRate",
-    "StateOfCharge"
-    
+    "StateOfCharge"    
 };
 #else
 {
@@ -50,15 +49,18 @@ void ReportToAlertContainer(BatteryParameter_t BatteryParameter,AlertType_t Aler
     ParameterAlertContainer[BatteryParameter] = AlertType;
 }
 
+void printonConsole(char* str1, char* str2)
+{
+    printf("%s  %s\n",str1,str2);
+}
 
-void Alert(void)
+void AlertFromContainerData(void)
 {
     int index = 0;
     for(index = 0;index < BatteryParameter_TotalNumber;index++)
         if(ParameterAlertContainer[index] != AlertType_NoAlert)
-        printf("%s %s\n",
-            Parameter_str[index],
-            AlertType_str[ParameterAlertContainer[index]]);
+        {
+           printonConsole(Parameter_str[index], AlertType_str[ParameterAlertContainer[index]]);
+           ParameterAlertContainer[index] = AlertType_NoAlert;
+        }
 }
-
-

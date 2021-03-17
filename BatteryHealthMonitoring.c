@@ -65,12 +65,12 @@ int batteryIsOk()
 int main() {
   FeedBatteryParameterValues(param_value[0]);
   assert(batteryIsOk());
-  Alert();
+  AlertFromContainerData();
   FeedBatteryParameterValues(param_value[1]);
   assert(!batteryIsOk());
-  Alert();
+  AlertFromContainerData();
   FeedBatteryParameterValues(param_value[2]);
   assert(batteryIsOk());
-  Alert();
+  AlertFromContainerData();
   return 0;
 }
