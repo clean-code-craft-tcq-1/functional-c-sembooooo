@@ -5,12 +5,12 @@
 
 
 
-static Testcase_OutOfHigherRange(void)
+static void Testcase_OutOfHigherRange(void)
 {
     assert(IsBatterychargeRateStable(BMS_CHARGERATE_HIGHER_RANGE+0.1) == 0);    
 }
 
-static Testcase_EqualToHigherRange(void)
+static void Testcase_EqualToHigherRange(void)
 {
     assert(IsBatterychargeRateStable(BMS_CHARGERATE_HIGHER_RANGE) == 1);    
 }

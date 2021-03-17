@@ -10,7 +10,7 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     - name: build
-      run: gcc -Wall -Wextra -o ChargeRateUnitTester /UnitTest/ChargeRateUnitTest/*.c
+      run: gcc -Wall -Wextra -o ChargeRateUnitTester ./UnitTest/ChargeRateUnitTest/*.c
       
     - name: run
       run: ./ChargeRateUnitTester
